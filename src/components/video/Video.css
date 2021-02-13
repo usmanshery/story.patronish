@@ -1,0 +1,254 @@
+.recorderContainer{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}
+
+.recorderDiv{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.review-video {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	object-fit: cover
+}
+
+.review-view {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	position: relative;
+   overflow: hidden;
+}
+
+
+.review-buttons {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 100%;
+	margin-bottom: 40px
+}
+
+.recorder{
+	background-color: white;
+	z-index: 1;
+}
+
+.player {
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+}
+
+.dialogue{
+	width: 100%;
+	height: auto;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 5;
+}
+
+.dialogue_text_box{
+	background: rgb(50, 50, 50, 0.5);
+	color: rgb(0, 0, 0, 0.65);
+	padding: 30px;
+	margin-bottom: 10px;
+}
+
+.dialogue_text_box>p{
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 500;
+	font-size: 28px;
+	
+}
+
+.button {
+	color: #fff !important;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-size: 20px;
+	background: #434343;
+	padding: 10px;
+	width: 130px;
+	border-radius: 5px;
+	display: inline-block;
+	border: none;
+	transition: all 0.4s ease 0s;
+}
+
+.button:hover {
+	background: #434343;
+	letter-spacing: 1px;
+	-webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+	-moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+	box-shadow: 5px 40px -10px rgba(0, 0, 0, 0.57);
+	transition: all 0.4s ease 0s;
+}
+
+.buttonRecord{
+	color: #fff !important;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-size: 20px;
+	background: #fa1a70;
+	/* width: 130px; */
+	border-radius: 5px;
+	transition: all 0.4s ease 0s;
+	width: 150px;
+	margin-left: -75px;
+	z-index: 10;
+}
+
+.buttonRetry{
+	color: #fff !important;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-size: 20px;
+	background: #434343;
+	border-radius: 5px;
+	border-color: #434343;
+	transition: all 0.4s ease 0s;
+	padding: 8px;
+	margin: 20px;
+	z-index: 10;
+}
+
+.buttonSubmit{
+	color: #fff !important;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-size: 20px;
+	background: #434343;
+	border-radius: 5px;
+	border-color: #434343;
+	transition: all 0.4s ease 0s;
+	padding: 8px;
+	margin: 20px;
+	z-index: 10;
+}
+
+.buttonPlay{
+	position: absolute;
+	background: url("/play.png");
+	background-size: cover;
+	display: inline-block;
+	border: none;
+	width: 50px;
+	height: 50px;
+	left: 50%;
+	top: 50%;
+	margin-left: -25px;
+	margin-top: -25px;
+	z-index: 10;
+}
+
+.buttonMidBottom{
+	position: absolute;
+	bottom: 10%;
+	left: 50%;
+	padding: 10px;
+	border-radius: 5px;
+	display: inline-block;
+	border: none;
+	z-index: 10;
+}
+
+.uploadControls{
+	position: absolute;
+	left: 35%;
+	bottom: 10%;
+	width: 30%;
+	height: auto;
+	z-index: 10;
+}
+
+/* change player background color */
+.content{
+	height: 100%;
+	width: 100%;
+	position: relative;
+	top: 0%;
+	left: 0%;
+	overflow: hidden;
+	background: #fff;
+}
+
+.videooverlay {
+	position: absolute;
+	width: 100%;
+	height: auto;
+	background: rgb(50, 50, 50, 0.5);
+	text-align: center;
+	vertical-align: middle;
+}
+
+.videooverlay>p{
+	color: rgb(0, 0, 0, 0.65);
+	padding: 30px;
+	margin-bottom: 10px;
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 500;
+	font-size: 28px;
+}
+
+.content {
+	height: 100vh;
+	width: 100%;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
+#uploadProgressDiv{
+	z-index: 10;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 250px;
+	height: 250px;
+	margin-left: -125px;
+	margin-top: -125px;
+	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#uploadProgressDiv > h3{
+	text-align: center;
+	font-size: 36px;
+	font-weight: 100;
+	font-family: 'Quicksand';
+	color: rgb(0, 0, 0, 0.65);
+}
+
+.loading {
+	z-index: 10;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -60px;
+	margin-top: -100px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}

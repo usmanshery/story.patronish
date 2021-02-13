@@ -1,0 +1,85 @@
+#root,
+body,
+html {
+    height: 100%
+}
+
+.intro-view {
+    justify-content: center
+}
+
+.intro-view,
+.record-view,
+.recorder {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%
+}
+
+.record-view,
+.recorder {
+    justify-content: space-between;
+    width: 100%
+}
+
+.viewfinder {
+    position: fixed;
+    object-fit: cover;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    -webkit-filter: FlipH;
+    filter: FlipH
+}
+
+.review-view {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    width: 100%
+}
+
+.review-video {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    object-fit: cover
+}
+
+.review-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-bottom: 40px
+}
+
+.submitted-view {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column
+}
+
+.create-link--form {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 10px
+}
+
+.App {
+    height: 100%
+}
+
+.unsupported {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%
+}
+
+/*# sourceMappingURL=main.aa2eea6c.chunk.css.map */
