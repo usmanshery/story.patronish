@@ -1,0 +1,42 @@
+.main {
+	background: #fff;
+	width: 100vw;
+	height: 100vh;
+
+	text-align: center;
+	padding: 0;
+	margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+	.main {
+		max-width: none;
+	}
+}
+
+.loading {
+	z-index: 10;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -60px;
+	margin-top: -55px;
+	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.loading-failed {
+	overflow: hidden;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center; /*centers items on the line (the x-axis by default)*/
+	align-items: center; /*centers items on the cross-axis (y by default)*/
+}
+
+.loading-failed > h1 {
+	margin: auto;
+}
