@@ -5,12 +5,16 @@ import videojs from 'video.js';
 import RecordRTC from 'recordrtc';
 
 import 'videojs-record/dist/videojs.record.js';
+import '@ffmpeg/ffmpeg/dist/ffmpeg.min.js';
 import 'video.js/dist/video-js.css';
 import 'videojs-record/dist/css/videojs.record.css';
 import './Video.css';
 
 import Spinner from 'react-bootstrap/Spinner';
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import FFmpegWasmEngine from 'videojs-record/dist/plugins/videojs.record.ffmpeg-wasm.js';
+import 'videojs-record/dist/plugins/videojs.record.ts-ebml.js';
+
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
@@ -60,7 +64,11 @@ export default class VJSRecorder extends Component{
 		recorder.on('deviceReady', () => {
 			console.log('device is ready!');
 			this.setState({
-				deviceReady: true
+				deviceReady: true,
+				videoSize: {
+					width: this.state.recorder.videoWidth(),
+					height: this.state.recorder.videoHeight()
+				}
 			});
 			if(this.state.phase === Phase.null){
 				this.setState({
@@ -70,7 +78,7 @@ export default class VJSRecorder extends Component{
 
 			let videoWidth = recorder.videoWidth();
 			let videoHeight = recorder.videoHeight();
-	
+			
 			let screenWidth = window.screen.width;
 			let screenHeight = window.screen.height;
 	
@@ -157,6 +165,7 @@ export default class VJSRecorder extends Component{
 			return;
 		let videoWidth = this.state.recorder.videoWidth();
 		let videoHeight = this.state.recorder.videoHeight();
+		
 
 		let screenWidth = window.screen.width;
 		let screenHeight = window.screen.height;
@@ -223,8 +232,10 @@ export default class VJSRecorder extends Component{
 	startRecording(){
 		if (!this.state.recorder.record().isRecording()) {
 			this.state.recorder.record().start();
+			let timeMil = Date.now();
 			this.setState({
-				phase: Phase.recording
+				phase: Phase.recording,
+				recStartTimestamp: timeMil
 			});
 		}
 	}
@@ -232,10 +243,13 @@ export default class VJSRecorder extends Component{
 	stopRecording(){
 		if (this.state.recorder.record().isRecording()) {
 			this.state.recorder.record().stop();
+			let timeMil = Date.now();
 			this.setState({
-				phase: Phase.preview
+				phase: Phase.preview,
+				recEndTimestamp: timeMil
 			});
 		}
+		// console.log("Approx recording duration: ", ((this.state.recEndTimestamp - this.state.recStartTimestamp) / 1000));
 	}
 
 	startPlayback(){
@@ -274,11 +288,19 @@ export default class VJSRecorder extends Component{
 		var uploadFile = this.state.src;
 		var timestamp = new Date().getTime().toString();
 		uploadFile = new File([uploadFile], timestamp);
-		var fd = new FormData();
+		
+		// query name
 		const params = queryString.parse(window.location.search);
+		// append video size and duration
+		const duration  = Math.floor((this.state.recEndTimestamp - this.state.recStartTimestamp) / 1000);
+		const videoResolution = this.state.videoSize;
+		
+		var fd = new FormData();
 		fd.append('upl', uploadFile, 'video.mp4');
-		fd.append('url', params.campaign);
 		fd.append('ans', JSON.stringify(window.campaign.questions));
+		fd.append('url', params.campaign);
+		fd.append('dur', duration);
+		fd.append('res', JSON.stringify(videoResolution));
 		
 
 		let baseUrl;

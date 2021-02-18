@@ -206,6 +206,7 @@ export default class ReviewView extends Component {
 
 		var fd = new FormData();
 		fd.append('url', params.campaign);
+		fd.append('ans', JSON.stringify(window.campaign.questions));
 		fd.append('imgcount', this.imageBlobArray.length);
 
 		var zip = new JSZip();
